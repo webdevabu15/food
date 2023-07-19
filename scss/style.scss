@@ -1,0 +1,603 @@
+@import url(_reset.scss);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+$main-light-color: #ffffff;
+$main-dark-color: #000000;
+$secondary-light-color: #150c01;
+$warning-color: #dc780b;
+
+@mixin font($color, $f-size, $l-height, $f-weight) {
+  @if $color == "light" {
+    color: $main-light-color;
+  } @else if $color == "dark" {
+    color: $main-dark-color;
+  } @else if $color == "secondary" {
+    color: $secondary-light-color;
+  }
+  color: #150c01;
+  font-family: "Roboto", sans-serif;
+  font-size: $f-size;
+  font-style: normal;
+  font-weight: $f-weight;
+  line-height: $l-height; /* 150% */
+}
+@mixin button($padding, $bg-color, $border) {
+  padding: $padding;
+  @if $bg-color == $main-dark-color {
+    color: $main-light-color;
+    background-color: $main-dark-color;
+  } @else if $bg-color == $warning-color {
+    color: $main-light-color;
+    background-color: $warning-color;
+  } @else if $bg-color == $main-light-color {
+    color: $warning-color;
+    background-color: $main-light-color;
+  } @else {
+    color: $main-dark-color;
+    background-color: $main-light-color;
+  }
+  border: $border;
+  border-radius: 5px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.nav__wrapper {
+  display: flex;
+  padding: 14px 0;
+  margin-top: 30px;
+  .nav__logo {
+    display: flex;
+    padding-right: 30px;
+  }
+  .nav__menu {
+    display: flex;
+    flex-grow: 1;
+    gap: 41px;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    .nav__link {
+      @include font("secondary", 16px, normal, 400);
+      opacity: 0.6;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .nav__link:hover {
+      color: $warning-color;
+    }
+  }
+  .btn {
+    @include button(14px 30px, $warning-color, 0px);
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background-color: $main-light-color;
+    color: $warning-color;
+    border: 1px solid $warning-color;
+  }
+}
+
+.hero__wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  .hero__title {
+    position: relative;
+    top: 0px;
+    width: 50%;
+    h1 {
+      @include font("dark", 49px, 57.6px, 700);
+      width: 555px;
+      height: 161px;
+    }
+    p {
+      @include font("secondary", 16px, 24px, 500);
+      opacity: 0.7;
+      padding: 42px 0px 50px 0px;
+    }
+    .hero__btns {
+      display: flex;
+      gap: 30px;
+      :first-child{
+        @include button(20px 40px, $warning-color, none);
+        width: 158px;
+        transition: 0.3s;
+      } 
+      :first-child:hover{
+        background-color: $main-light-color;
+        border: 1px solid $warning-color;
+        color: $warning-color;
+      }
+      :last-child {
+        @include button(20px 40px, $main-light-color, 1px solid $warning-color);
+        width: 170px;
+        transition: 0.3s;
+      }
+      :last-child:hover{
+        background-color: $warning-color;
+        color: $main-light-color;
+      }
+    }
+  }
+  .hero__img {
+    width: 50%;
+
+    img {
+      position: relative;
+      top: -70px;
+      right: 70px;
+      background-color: none;
+      z-index: -1;
+    }
+  }
+}
+
+.feature {
+  margin: 108px 0px;
+  .feature__title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    p {
+      @include font("", 16px, normal, 500);
+      color: $warning-color;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    h2 {
+      @include font("dark", 31.25px, normal, 700);
+      font-family: "Philosopher", sans-serif;
+      text-transform: capitalize;
+    }
+  }
+  .feature__cards {
+    margin-top: 44px;
+    display: flex;
+    gap: 90px;
+    .feature__card {
+      width: 300px;
+      height: 228px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      div {
+        background-color: #f4f6eb;
+        padding: 22px;
+        border-radius: 50%;
+        margin-bottom: 33px;
+      }
+      h3 {
+        @include font("dark", 25px, 24px, 700);
+        font-family: "Philosopher", sans-serif;
+        margin-bottom: 15px;
+      }
+      p {
+        @include font("secondary", 16px, 24px, 400);
+        text-align: center;
+        width: 300px;
+        height: 68px;
+      }
+    }
+  }
+}
+
+.about{
+  margin-bottom: 100px;
+  .about__wrapper{
+    display: flex;
+    align-items: center;
+    gap: 97px;
+
+    :first-child{
+      border-radius: 30px;
+    }
+    .about__img{
+      position: relative;
+     :first-child{
+      position: relative;
+      z-index: 2;
+     }
+     :last-child{
+      position:absolute;
+      top: -180px;
+      left: -280px;
+      z-index: 1;
+     }
+    }
+    .about__info{
+      :first-child{
+        @include font("", 16px, 24px,500);
+        color: $warning-color;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      :nth-child(2){
+         @include font("dark", 31.25px, 40.63px, 700);
+         font-family: 'Philosopher', sans-serif;
+         margin: 10px 0px 30px;
+      }
+      :nth-child(3){
+        @include font("secondary", 16px, 24px, 400);
+        opacity: 70%;
+        margin-bottom: 30px;
+      }
+      :last-child{
+        @include button( 11px 20px 12px 20px, $warning-color, none);
+        @include font("light", 16px, 19px, 500);
+        color: $main-light-color;
+        width: 142px;
+        height: 42px;
+        text-align: center;
+        transition: 0.3s;
+      }
+      :last-child:hover{
+        background-color: #fff;
+        color: $warning-color;
+        border: 1px solid $warning-color;
+      }
+    }
+  }
+ 
+}
+
+.menu{
+  padding-top: 105px;
+  margin-bottom: 132px;
+  .menu__wrapper{
+    .menu__title{
+      text-align: center;
+      :first-child{
+        @include font("", 16px, 24px, 500);
+        color: $warning-color;
+        letter-spacing: 3px;
+      }
+      :nth-child(2){
+        @include font("dark", 31px, 24px, 700);
+        font-family: 'Philosopher', sans-serif;
+        margin: 9px 0px 25px;
+      }
+      :last-child{
+        @include font("secondary", 16px, 24px, 400);
+        width: 748px;
+        height: 64px;
+        margin: 0 auto 60px;
+      }
+    }
+    .menu__cards{
+      width: 1140px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+      gap: 30px;
+      .menu__card{
+        width: 360px;
+        height: 446px;
+        border: 1px solid #0000001a;
+        border-top-left-radius: 75px;
+        border-top-right-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        img{
+          border-top-left-radius: 75px;
+          border-bottom-right-radius: 75px;
+          border-top-right-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+        .menu__price{
+          display: flex;
+          padding: 21px 25px 0px;
+          :first-child{
+            display: flex;
+            flex-grow: 1;
+            width: 206px;
+            height: 24px;
+            @include font("dark", 25px, 24px, 700);
+            font-family: 'Philosopher', sans-serif;
+          }
+          :last-child{
+            @include font("dark", 25px, 24px, 700);
+            font-family: 'Philosopher', sans-serif;
+          }
+        }
+        .menu__text{
+          @include font("secondary", 16px, 24px, 400);
+          width: 318px;
+          height: 38px;
+          margin: 20px 25px 20px;
+        }
+        .menu__ball{
+          display: flex;
+          align-items: center;
+          margin: 20px 25px 20px;
+          gap: 186px;
+          .plus{
+            background-color: $warning-color;
+            width: 36px;
+            height: 34px;
+            border-radius: 5px; 
+            :first-child{
+              padding: 11px 11px;
+            }
+          }
+          .stars{
+            display: flex;
+            gap: 2px;
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+    .menu__btn{
+      display: flex;
+      justify-content: center;
+      button{
+        @include button(12px 30px, $main-light-color, 1px solid $warning-color);
+        @include font("", 16px, 19px, 500);
+        color: $warning-color;
+        transition: 0.3s;
+      }
+      button:hover{
+        background-color:  $warning-color;
+        color: $main-light-color;
+        border: 1px solid $warning-color;
+      }
+    }
+  }
+}
+
+.take-away{
+  margin-bottom: 213px;
+  background-color: #FBF1E7;
+  height: 518px;
+  .take-away__wrapper{
+    display: flex;
+    gap: 70px;
+    margin-top: 114px;
+    .take-away__title{
+      position: relative;
+      z-index: 1;
+      :first-child{
+        @include font("", 16px, 24px, 500);
+        color: $warning-color;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .take__title{
+        width: 555px;
+        height: 72px;
+        @include font("dark", 32px, 41px, 700);
+        font-family: 'Philosopher', sans-serif;
+        margin: 5px 0px 29px;
+      }
+      :nth-child(3){
+        @include font("secondary", 16px, 24px, 400);
+        opacity: 0.7;
+        width: 555px;
+        margin-bottom: 40px;
+      }
+
+      .take-away__btns{
+        display: flex;
+        gap: 30px;
+        .btn1{
+          @include button(11px 9px 11px 28px, $main-dark-color, none);
+          @include font("light", 16px, 19px, 500);
+          text-transform: capitalize;
+          color: $main-light-color;
+          width: 173px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: 0.3s;
+         }
+         .btn1:hover{
+          background-color: $main-light-color;
+          color: $main-dark-color;
+          border: 1px solid black
+         }
+        .btn2{
+          @include font("dark", 16px, 19px, 500);
+          width: 179px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 9px;
+          border-radius: 5px;
+          border: 2px solid gray;
+          transition: 0.3s;
+        }
+        .btn2:hover{
+          background-color: $main-dark-color;
+          color: $main-light-color;
+        }
+      }
+    }
+    .take-away__img{
+      position: relative;
+      top: -190px;
+      z-index: 2;
+    }
+  }
+}
+
+.testimonial{
+  margin-bottom: 120px;
+  .testimonial__wrapper{
+    position: relative;
+    .testimonial__title{
+      text-align: center;
+      :first-child{
+        @include font("warning", 16px, 24px, 500);
+        letter-spacing: 3px;
+        color: $warning-color;
+        text-transform: uppercase; 
+      }
+      :nth-child(2){
+        @include font("dark", 32px, 24px, 700);
+        font-family: 'Philosopher', sans-serif;
+        margin: 12px 0px 24px ;
+      }
+      :last-child{
+        max-width: 750px;
+        height: 62px;
+        margin: 17px auto 0px;
+        @include font("secondary", 16px, 24px, 400);
+        opacity: 0.7;
+      }
+    }
+    .testimonial__carousel{
+      width: 804px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      align-items: center;
+      :first-child{
+       width: 100px;
+       height: 100px;
+      }
+      .testimonial__item__text{
+        @include font("dark", 16px, 24px, 400);
+        width: 506px;
+        height: 59px;
+        text-align: center;
+        margin: 8px auto 68px;
+      }
+     
+      .testimonial__ball{
+        display: flex;
+        width: 88px;
+        height: 16px;
+        margin-bottom: 32px;
+        i{
+          width: 16px;
+          height: 16px;
+          margin: 2px;
+        }
+      }
+
+      .user__name{
+        @include font("dark", 16px, 19px, 400);
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .user__job{
+          @include font("dark", 12px, 14px, 400)
+      }
+      .arrows{
+        display: flex;
+        
+        :first-child{
+          position: absolute;
+          left: 0;
+          top: 60%;
+        }
+        :last-child{
+          position: absolute;
+          right: 0;
+          top: 60%;
+        }
+        img{
+          width: 6px;
+          height: 12px;
+        }
+      }
+    }
+  }
+}
+
+.contact{
+  background-color: #fbf1e7;
+  padding: 115px 0px  ;
+  .contact__wrapper{
+    .contact__title{
+      text-align: center;
+      p{
+        @include font("", 16px, normal, 500);
+        color: $warning-color;
+        text-transform: uppercase;
+        letter-spacing: 3.2px;
+      }
+      h3{
+        @include font("dark", 31px, 40px, 700);
+        text-align: center;
+        width: 749px;
+        margin: 15px auto 46px;
+        font-family: 'Philosopher', sans-serif;
+      }
+      .contact__input{
+        position: relative;
+        input{
+          width: 750px;
+          height: 75px;
+          text-indent: 32px;
+          border-radius: 10px;
+          border: none;
+        }
+        button{
+          width: 156px;
+          height: 75px;
+          @include button(15px 30px, $warning-color, none);
+          @include font("light", 15px, 40px, 500);
+          color: $main-light-color;
+          border-radius: 10px;
+          position: absolute;
+          right: 185px;
+          transition: 0.5s;
+        }
+        button:hover{
+          background-color: $main-light-color;
+          border: 1px solid $warning-color;
+          color: $warning-color;
+        }
+      }
+    }
+  }
+}
+
+
+footer{
+  background-color: #252525;
+  padding: 137px 0px 104px;
+  .footer__wrapper{
+    display: flex;
+    gap: 31px;
+    .footer__menu{
+      width: 262px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .active{
+        @include font("light", 18px, normal, 700);
+        color: $main-light-color;
+        font-family: 'Philosopher', sans-serif;
+      }
+      a{
+        @include font("light", 14px, normal, 400);
+        color: $main-light-color;
+        text-decoration: none;
+      }
+      .socials a{
+        padding-right: 10px;
+      }
+    }
+  }
+}
